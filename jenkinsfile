@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/karunakale/interncarrier_task1.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build the Docker image
+                sh 'docker build -t karunakale/my app.'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Run automated tests
+                   'docker run myapp npm test'
+            }
+        }
+        stage('deploy') {
+            steps {
+                // Push the Docker image to Docker Hub
+                sh 'docker push karunakale/your-app:latest'
+            }
+        }
+    }
+}
