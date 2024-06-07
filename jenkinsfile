@@ -10,19 +10,32 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Docker image
-                sh 'docker build -t karunakale/node-app . '
+                sh 'docker build -t "karunakale/interncarrer_task1:latest"
             }
         }
         stage('Test') {
             steps {
                 // Run automated tests
-                   'docker run node-app npm test'
+                 sh 'npm test'
             }
         }
-        stage('deploy') {
+         stage('Publish Docker Image') {
             steps {
-                // Push the Docker image to Docker Hub
-                sh 'docker push karunakale/node-app:latest'
+                script {
+                    // Pushing the Docker image to registry
+                    docker.withRegistry('https://hub.docker.com/repository/docker/karunakale/interncarrer_task1/general',fff7dd97-46b0-492a-b321-730e5dda70fd) {
+                        dockerImage.push('karunakale/interncarrer_task1:latest')
+                    }
+                }
+            }
+        }
+        
+         stage('Deploy') {
+            steps {
+                script {
+                    // Deploying the Docker image
+                    sh 'docker run -d -p 3000:3000 karunakale/interncarrer_task1:latest'
+                }  
             }
         }
     }
