@@ -5,8 +5,17 @@ pipeline {
         registryCredential = 'fff7dd97-46b0-492a-b321-730e5dda70fd' // Credential ID for Docker registry
         dockerImage = 'karunakale/interncarrer_task1:latest' // Replace with your Docker Hub image
     }
-
+    
     stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Cloning the Git repository
+                    git credentialsId: '6851e16d-095f-4a92-9d22-0f8e671a69ee', url: 'https://github.com/karunakale/interncarrier_task1.git'
+                }
+            }
+        }
+    
         stage('Build') {
             steps {
                 script {
