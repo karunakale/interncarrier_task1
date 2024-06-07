@@ -1,48 +1,49 @@
 pipeline {
     agent any
 
+    environment {
+        registryCredential = 'fff7dd97-46b0-492a-b321-730e5dda70fd' // Credential ID for Docker registry
+        dockerImage = 'karunakale/interncarrer_task1:latest' // Replace with your Docker Hub image
+    }
+
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', credentialsId:  'github', url: 'https://github.com/karunakale/interncarrier_task1.git'
-            }
-        }
         stage('Build') {
             steps {
                 script {
                     def dockerImage
                     // Building Docker image
-                    dockerImage = docker.build ("karunakale/interncarrer_task1:latest")
+                    dockerImage = docker.build("karunakale/interncarrer_task1:latest")
+                }
             }
         }
+
         stage('Test') {
             steps {
-              script {
+                script {
                     // Running tests (if applicable)
                     sh 'npm test'
                 }
+            }
         }
 
-         stage('Publish Docker Image') {
+        stage('Publish Docker Image') {
             steps {
                 script {
                     // Pushing the Docker image to registry
-                    docker.withRegistry('https://hub.docker.com/repository/docker/karunakale/interncarrer_task1/general',fff7dd97-46b0-492a-b321-730e5dda70fd) {
+                    docker.withRegistry('https://hub.docker.com/r/karunakale/interncarrer_task1', 'fff7dd97-46b0-492a-b321-730e5dda70fd') {
                         dockerImage.push('karunakale/interncarrer_task1:latest')
                     }
                 }
             }
         }
 
-         stage('Deploy') {
+        stage('Deploy') {
             steps {
                 script {
                     // Deploying the Docker image
                     sh 'docker run -d -p 3000:3000 karunakale/interncarrer_task1:latest'
-                }  
-             }
-          }
-       }
-     }
-   }
+                }
+            }
+        }
+    }
 }
