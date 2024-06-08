@@ -4,7 +4,7 @@ const http = require('http');
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, this is a  Node.js application after deployment \n');
+  res.end('Hello, this is a  Node.js application after deployment of the image \n');
 });
 
 const PORT = process.env.PORT || 3000;
