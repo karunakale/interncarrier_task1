@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        registryCredential = 'fff7dd97-46b0-492a-b321-730e5dda70fd' // Credential ID for Docker registry
-        dockerImage = 'karunakale/interncarrer_task1:latest' // Replace with your Docker Hub image
+        registryCredential = 'fff7dd97-46b0-492a-b321-730e5dda70fd' 
+        dockerImage = 'karunakale/interncarrer_task1:latest' 
     }
 
     stages {
@@ -34,7 +34,7 @@ pipeline {
                     sh 'docker login -u karunakale -p Karuna@pradip15'
 
                     // Tag the Docker image
-                    sh 'docker tag karunakale/interncarrer_task1:latest karunakale/interncarrer_task1:v1.0' // Replace your-local-image with the actual local image name
+                    sh 'docker tag karunakale/interncarrer_task1:latest karunakale/interncarrer_task1:v1.0' 
 
                     // Push the Docker image to Docker Hub
                     sh 'docker push karunakale/interncarrer_task1:latest'
