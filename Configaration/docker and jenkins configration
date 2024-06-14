@@ -1,0 +1,3 @@
+In Jenkins, go to "Manage Jenkins" > “credentials" 
+      ->system ->globalcredentials-> add credentials
+Add your DockerHub username and paste the token.

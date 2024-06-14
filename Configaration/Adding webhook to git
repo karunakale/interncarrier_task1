@@ -1,0 +1,6 @@
+Go to your GitHub repository. 
+Under "Settings," select "Webhooks." 
+Click on "Add webhook." 
+Set the payload URL to your Jenkins server's URL followed by /github-webhook/. 
+Select the events you want to trigger the webhook (e.g., Push events). 
+Save your webhook configuration

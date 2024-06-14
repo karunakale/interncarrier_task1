@@ -1,0 +1,4 @@
+In Jenkins, go to "Manage Jenkins" > "Credentials.“
+->system ->globalcredentials-> add credentials
+
+Add your GitHub username and paste the Github token as the password.

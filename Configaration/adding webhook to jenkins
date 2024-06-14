@@ -1,0 +1,2 @@
+In the jenkins Job select the option in the built trigger 
+->  GitHub hook trigger for GITScm polling
